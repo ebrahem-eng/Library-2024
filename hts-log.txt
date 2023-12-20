@@ -1,0 +1,14 @@
+HTTrack3.49-2+htsswf+htsjava launched on Wed, 20 Dec 2023 02:04:07 at https://skyone.vercel.app/education/en/index.html +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://skyone.vercel.app/education/en/index.html -O1 "C:\My Web Sites\library" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+02:04:46	Error: 	"Forbidden" (403) at link https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css (from https://skyone.vercel.app/education/en/index.html)
+02:04:46	Error: 	"Not Found" (404) at link https://skyone.vercel.app/images/logo-education.png (from https://skyone.vercel.app/education/en/index.html)
+02:05:19	Error: 	"Not Found" (404) at link https://skyone.vercel.app/education/en/href (from https://skyone.vercel.app/education/en/about.html)
+
+HTTrack Website Copier/3.49-2 mirror complete in 1 minutes 12 seconds : 156 links scanned, 152 files written (10482712 bytes overall) [8905228 bytes received at 123683 bytes/sec], 2060778 bytes transferred using HTTP compression in 23 files, ratio 17%, 9.7 requests per connection
+(3 errors, 0 warnings, 0 messages)
