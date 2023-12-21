@@ -6,7 +6,7 @@
        $delete =$database->prepare("DELETE FROM admin WHERE id = :id");
        $delete->bindParam("id",$id);
        if($delete->execute()){
-        header("location:../tables.php",true);
+         header("location:index.php?success=1", true);
        }
        else{
         echo 'failed';
