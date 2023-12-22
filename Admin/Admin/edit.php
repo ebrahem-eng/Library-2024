@@ -40,7 +40,7 @@
 
                             <div class="container mt-3">
 
-                                <form action="update.php" method="POST">
+                                <form action="update.php" method="POST" enctype="multipart/form-data">
                                     <?php
                                     if (isset($_POST['edit'])) {
                                         include('../../Config/config.php');

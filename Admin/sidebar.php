@@ -49,7 +49,7 @@ $basePath = "/maria/Library-2024-2/";
     <ul class="dropdown-menu">
       <li><a href="<?php echo $basePath; ?>Admin/Admin/index.php" style="margin-left: 50px;">Admin Table</a></li>
       <br>
-      <li><a href="dropdown-item-2.php" style="margin-left: 50px;">Create Admin</a></li>
+      <li><a href="<?php echo $basePath; ?>Admin/Admin/create.php" style="margin-left: 50px;">Create Admin</a></li>
       <!-- Add more dropdown items as needed -->
     </ul>
   </li>

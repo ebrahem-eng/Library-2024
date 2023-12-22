@@ -39,12 +39,14 @@
                             <?php
                             // Check for success message
                             if (isset($_GET['success']) && $_GET['success'] == 1) {
+                                $message = ($_GET['type'] == 'success') ? $_GET['message'] : '';
                                 echo '<div class="alert alert-success d-flex justify-content-between align-items-center" role="alert">
-              <span>Update successful!</span>
+              <span>' . $message . '</span>
               <button type="button" class="btn-close" onclick="redirectToIndex()" aria-label="Close"></button>
           </div>';
                             }
                             ?>
+
 
                             <script>
                                 function redirectToIndex() {
@@ -84,13 +86,20 @@
                                                 <td>
                                                     <div class="d-flex px-2 py-1">
                                                         <div>
-                                                            <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1">
+                                                            <!-- Check if $admin['img'] is set and not empty before displaying the image -->
+                                                            <?php if (!empty($admin['img'])) : ?>
+                                                                <img src="<?php echo $admin['img']; ?>" class="avatar avatar-sm me-3" alt="user1">
+                                                            <?php else : ?>
+                                                                <!-- Default image if $admin['img'] is not set or empty -->
+                                                                <img src="../assets/img/default-avatar.jpg" class="avatar avatar-sm me-3" alt="user1">
+                                                            <?php endif; ?>
                                                         </div>
                                                         <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm"><?php echo $admin['name'] ?></h6>
-                                                            <p class="text-xs text-secondary mb-0"><?php echo $admin['email'] ?></p>
+                                                            <h6 class="mb-0 text-sm"><?php echo $admin['name']; ?></h6>
+                                                            <p class="text-xs text-secondary mb-0"><?php echo $admin['email']; ?></p>
                                                         </div>
                                                     </div>
+
                                                 </td>
                                                 <td>
                                                     <p class="text-xs font-weight-bold mb-0"><?php echo $admin['phone'] ?></p>
