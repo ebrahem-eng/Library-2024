@@ -36,7 +36,7 @@ if (isset($_POST['update'])) {
                 echo 'Previous image deleted. ';
             }
 
-            header("location:index.php?success=1&type=update");
+            header("location:index.php?success=1&type=success&message=Admin Updated Successfully", true);
             exit();
         } else {
             echo "not updated <br>";
