@@ -44,16 +44,24 @@ if (!isset($_SESSION['loggedAdmin_in']) || $_SESSION['loggedAdmin_in'] !== true)
                 <div class="col-12">
                     <div class="card mb-4">
                         <div class="card-header pb-0">
-                            <?php
-                            // Check for success message
-                            if (isset($_GET['success']) && $_GET['success'] == 1) {
-                                $message = ($_GET['type'] == 'success') ? $_GET['message'] : '';
-                                echo '<div class="alert alert-success d-flex justify-content-between align-items-center" role="alert">
-              <span>' . $message . '</span>
-              <button type="button" class="btn-close" onclick="redirectToIndex()" aria-label="Close"></button>
-          </div>';
-                            }
-                            ?>
+                        <?php
+                        
+                        if (isset($_GET['success']) && $_GET['success'] == 1) {
+                            $message = ($_GET['type'] == 'success') ? $_GET['message'] : '';
+                            echo '<div class="alert alert-success d-flex justify-content-between align-items-center" role="alert">
+          <span>' . $message . '</span>
+          <button type="button" class="btn-close" onclick="redirectToIndex()" aria-label="Close"></button>
+      </div>';
+                        }
+
+                        if (isset($_GET['success']) && $_GET['success'] == 0) {
+                            $message = ($_GET['type'] == 'error') ? $_GET['message'] : '';
+                            echo '<div class="alert alert-danger d-flex justify-content-between align-items-center" role="alert">
+          <span>' . $message . '</span>
+          <button type="button" class="btn-close" onclick="redirectToIndex()" aria-label="Close"></button>
+      </div>';
+                        }
+                        ?>
 
 
                             <script>

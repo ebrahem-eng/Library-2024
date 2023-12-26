@@ -5,6 +5,7 @@ if (!isset($_SESSION['loggedAdmin_in']) || $_SESSION['loggedAdmin_in'] !== true)
     header("Location: Auth/login.php");
     exit();
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +46,7 @@ if (!isset($_SESSION['loggedAdmin_in']) || $_SESSION['loggedAdmin_in'] !== true)
                     <div class="card mb-4">
                         <div class="card-header pb-0">
                             <?php
-                        
+
                             if (isset($_GET['success']) && $_GET['success'] == 1) {
                                 $message = ($_GET['type'] == 'success') ? $_GET['message'] : '';
                                 echo '<div class="alert alert-success d-flex justify-content-between align-items-center" role="alert">
@@ -53,113 +54,103 @@ if (!isset($_SESSION['loggedAdmin_in']) || $_SESSION['loggedAdmin_in'] !== true)
               <button type="button" class="btn-close" onclick="redirectToIndex()" aria-label="Close"></button>
           </div>';
                             }
-
-                            if (isset($_GET['success']) && $_GET['success'] == 0) {
-                                $message = ($_GET['type'] == 'error') ? $_GET['message'] : '';
-                                echo '<div class="alert alert-danger d-flex justify-content-between align-items-center" role="alert">
-              <span>' . $message . '</span>
-              <button type="button" class="btn-close" onclick="redirectToIndex()" aria-label="Close"></button>
-          </div>';
-                            }
                             ?>
-
-
                             <script>
                                 function redirectToIndex() {
-                                    // Redirect to index.php when the close button is clicked
                                     window.location.href = 'index.php';
                                 }
                             </script>
 
+                            <div class="row">
+                                <div class="col-6">
+                                    <h6>Subjects Teacher Table</h6>
+                                </div>
 
-                            <h6>Specialization Table</h6>
+                                <div class="col-3">
+                                    <form method="post" action='chooseSubject.php'>
+                                        <input type="hidden" value="<?php echo $_POST['teacherID'] ?>" name="teacherID" />
+                                        <button type='submit' class="badge badge-sm bg-gradient-dark" name='chooseSubject'>Choose From Subject</button>
+                                    </form>
+                                </div>
+                            </div>
+
+
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
                                 <table class="table align-items-center mb-0">
                                     <thead>
                                         <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Specialization Name</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">College Name</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Subject Name</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Subject Year</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Created by</th>
+                                            <th class="text-secondary opacity-7"></th>
 
-                                            <th class="text-secondary opacity-7"></th>
-                                            <th class="text-secondary opacity-7"></th>
-                                            <th class="text-secondary opacity-7"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
 
                                         include('../../Config/config.php');
+                                        $teacherID = $_POST['teacherID'];
 
-                                        $specializations = $database->prepare("SELECT 
-                                        specialization.id AS specializationID,
-                                        specialization.name AS specializationName,
-                                        specialization.img AS specializationImage,
-                                        specialization.created_by AS specializationCreatedBy,
-                                        specialization.college_id AS specializationCollege,
-                                        college.id AS collegeID,
-                                        college.name AS collegeName,
-                                        college.img AS collegeImg,
-                                        admin.id AS adminID,
-                                        admin.name AS adminName
-                                    FROM specialization  
-                                    INNER JOIN admin
-                                    ON admin.id = specialization.created_by
-                                    INNER JOIN college
-                                    ON college.id = specialization.college_id");
-    
-                                        $specializations->execute();
+                                        $subjects = $database->prepare("SELECT 
+                                                                        subject.id AS subjectID,
+                                                                        subject.name AS subjectName,
+                                                                        subject.img AS subjectImg,
+                                                                        subject.year AS subjectYear,
+                                                                        subject.created_by AS subjectCreatedBy,
+                                                                        admin.id AS adminID,
+                                                                        admin.name AS adminName
+                                                                        FROM subject  
+                                                                        INNER JOIN admin
+                                                                        ON admin.id = subject.created_by
+                                                                        INNER JOIN subjectTeacher
+                                                                        ON subjectTeacher.subject_id = subject.id
+                                                                        WHERE subjectTeacher.teacher_id = :teacherID
+                                                                    ");
 
-                                        foreach ($specializations as $specialization) {
+                                        $subjects->bindParam(":teacherID", $teacherID);
+                                        $subjects->execute();
+                                        $subjects->execute();
+
+                                        foreach ($subjects as $subject) {
                                         ?>
                                             <tr>
                                                 <td>
                                                     <div class="d-flex px-2 py-1">
                                                         <div>
-                                                       
-                                                            <?php if (!empty($specialization['specializationImage'])) : ?>
-                                                                <img src="<?php echo $specialization['specializationImage']; ?>" class="avatar avatar-sm me-3" alt="user1">
+
+                                                            <?php if (!empty($subject['subjectImg'])) : ?>
+                                                                <img src="<?php echo '../Subject/' . $subject['subjectImg']; ?>" class="avatar avatar-sm me-3" alt="user1">
                                                             <?php else : ?>
 
                                                                 <img src="../assets/img/default-avatar.jpg" class="avatar avatar-sm me-3" alt="user1">
                                                             <?php endif; ?>
                                                         </div>
                                                         <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm"><?php echo $specialization['specializationName'] ?></h6>
+                                                            <h6 class="mb-0 text-sm"><?php echo $subject['subjectName'] ?></h6>
                                                         </div>
                                                     </div>
                                                 </td>
-
                                                 <td>
-                                                    <p class="text-xs font-weight-bold mb-0"><?php echo $specialization['collegeName'] ?></p>
+                                                    <p class="text-xs font-weight-bold mb-0"><?php echo $subject['subjectYear'] ?></p>
                                                 </td>
 
                                                 <td>
-                                                    <p class="text-xs font-weight-bold mb-0"><?php echo $specialization['adminName'] ?></p>
+                                                    <p class="text-xs font-weight-bold mb-0"><?php echo $subject['adminName'] ?></p>
                                                 </td>
 
+
                                                 <td>
-                                                    <form method="post" action="edit.php">
-                                                        <input type="hidden" value="<?php echo $specialization['specializationID'] ?>" name="id" />
-                                                        <button type='submit' class="badge badge-sm bg-gradient-primary" style="margin-right: -30px;" name='edit'>Edit</button>
+                                                    <form method="post" action='revokeSubject.php'>
+                                                        <input type="hidden" value="<?php echo $subject['subjectID'] ?>" name="subjectID" />
+                                                        <input type="hidden" value="<?php echo $_POST['teacherID'] ?>" name="teacherID" />
+                                                        <button type='submit' class="badge badge-sm bg-gradient-danger" name='revokeSubject'>Revoke</button>
                                                     </form>
                                                 </td>
 
-                                                <td>
-                                                    <form method="post" action='delete.php'>
-                                                        <input type="hidden" value="<?php echo $specialization['specializationID'] ?>" name="id" />
-                                                        <button type='submit' class="badge badge-sm bg-gradient-danger" style="margin-right: -30px;" name='delete'>Delete</button>
-                                                    </form>
-                                                </td>
 
-                                                <td>
-                                                    <form method="post" action="subjectTable.php">
-                                                        <input type="hidden" value="<?php echo $specialization['specializationID'] ?>" name="id" />
-                                                        <button type='submit' class="badge badge-sm bg-gradient-dark" name='specializations'>Subjects</button>
-                                                    </form>
-                                                </td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>

@@ -149,9 +149,10 @@ $specializationID = $_POST['id'];
 
 
                                                 <td>
-                                                    <form method="post" action='delete.php'>
+                                                    <form method="post" action='revokeSubject.php'>
                                                         <input type="hidden" value="<?php echo $subject['subjectID'] ?>" name="id" />
-                                                        <button type='submit' class="badge badge-sm bg-gradient-danger" name='delete'>Revoke</button>
+                                                        <input type="hidden" value="<?php echo $specializationID ?>" name="specializationID" />
+                                                        <button type='submit' class="badge badge-sm bg-gradient-danger" name='revokeSubject'>Revoke</button>
                                                     </form>
                                                 </td>
 

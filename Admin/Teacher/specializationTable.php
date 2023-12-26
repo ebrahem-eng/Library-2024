@@ -45,7 +45,7 @@ if (!isset($_SESSION['loggedAdmin_in']) || $_SESSION['loggedAdmin_in'] !== true)
                     <div class="card mb-4">
                         <div class="card-header pb-0">
                             <?php
-                        
+
                             if (isset($_GET['success']) && $_GET['success'] == 1) {
                                 $message = ($_GET['type'] == 'success') ? $_GET['message'] : '';
                                 echo '<div class="alert alert-success d-flex justify-content-between align-items-center" role="alert">
@@ -72,7 +72,19 @@ if (!isset($_SESSION['loggedAdmin_in']) || $_SESSION['loggedAdmin_in'] !== true)
                             </script>
 
 
-                            <h6>Specialization Table</h6>
+                           
+
+                            <div class="row">
+                                <div class="col-6">
+                                <h6>Specialization Teacher Table</h6>
+                                </div>
+                                <div class="col-3">
+                                    <form method="post" action='chooseSpecialization.php'>
+                                        <input type="hidden" value="<?php echo  $_POST['teacherID']  ?>" name="teacherID" />
+                                        <button type='submit' class="badge badge-sm bg-gradient-dark" name='addSpecialization'>Choose From Specialization</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
@@ -84,8 +96,7 @@ if (!isset($_SESSION['loggedAdmin_in']) || $_SESSION['loggedAdmin_in'] !== true)
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Created by</th>
 
                                             <th class="text-secondary opacity-7"></th>
-                                            <th class="text-secondary opacity-7"></th>
-                                            <th class="text-secondary opacity-7"></th>
+                                           
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -93,6 +104,7 @@ if (!isset($_SESSION['loggedAdmin_in']) || $_SESSION['loggedAdmin_in'] !== true)
 
                                         include('../../Config/config.php');
 
+                                        $teacherID = $_POST['teacherID'];
                                         $specializations = $database->prepare("SELECT 
                                         specialization.id AS specializationID,
                                         specialization.name AS specializationName,
@@ -108,8 +120,12 @@ if (!isset($_SESSION['loggedAdmin_in']) || $_SESSION['loggedAdmin_in'] !== true)
                                     INNER JOIN admin
                                     ON admin.id = specialization.created_by
                                     INNER JOIN college
-                                    ON college.id = specialization.college_id");
-    
+                                    ON college.id = specialization.college_id
+                                    INNER JOIN teacherSpecialization
+                                    ON teacherSpecialization.specialization_id = specialization.id
+                                    WHERE teacherSpecialization.teacher_id = :teacherID
+                                    ");
+                                        $specializations->bindParam(":teacherID", $teacherID);
                                         $specializations->execute();
 
                                         foreach ($specializations as $specialization) {
@@ -118,7 +134,7 @@ if (!isset($_SESSION['loggedAdmin_in']) || $_SESSION['loggedAdmin_in'] !== true)
                                                 <td>
                                                     <div class="d-flex px-2 py-1">
                                                         <div>
-                                                       
+
                                                             <?php if (!empty($specialization['specializationImage'])) : ?>
                                                                 <img src="<?php echo $specialization['specializationImage']; ?>" class="avatar avatar-sm me-3" alt="user1">
                                                             <?php else : ?>
@@ -141,25 +157,13 @@ if (!isset($_SESSION['loggedAdmin_in']) || $_SESSION['loggedAdmin_in'] !== true)
                                                 </td>
 
                                                 <td>
-                                                    <form method="post" action="edit.php">
-                                                        <input type="hidden" value="<?php echo $specialization['specializationID'] ?>" name="id" />
-                                                        <button type='submit' class="badge badge-sm bg-gradient-primary" style="margin-right: -30px;" name='edit'>Edit</button>
+                                                    <form method="post" action='revokeSpecialization.php'>
+                                                        <input type="hidden" value="<?php echo $specialization['specializationID'] ?>" name="specializationID" />
+                                                        <input type="hidden" value="<?php echo  $_POST['teacherID']  ?>" name="teacherID" />
+                                                        <button type='submit' class="badge badge-sm bg-gradient-danger" style="margin-right: -30px;" name='revokeSpecialization'>Revoke</button>
                                                     </form>
                                                 </td>
 
-                                                <td>
-                                                    <form method="post" action='delete.php'>
-                                                        <input type="hidden" value="<?php echo $specialization['specializationID'] ?>" name="id" />
-                                                        <button type='submit' class="badge badge-sm bg-gradient-danger" style="margin-right: -30px;" name='delete'>Delete</button>
-                                                    </form>
-                                                </td>
-
-                                                <td>
-                                                    <form method="post" action="subjectTable.php">
-                                                        <input type="hidden" value="<?php echo $specialization['specializationID'] ?>" name="id" />
-                                                        <button type='submit' class="badge badge-sm bg-gradient-dark" name='specializations'>Subjects</button>
-                                                    </form>
-                                                </td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>

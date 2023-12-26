@@ -84,8 +84,7 @@ if (!isset($_SESSION['loggedAdmin_in']) || $_SESSION['loggedAdmin_in'] !== true)
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Created by</th>
 
                                             <th class="text-secondary opacity-7"></th>
-                                            <th class="text-secondary opacity-7"></th>
-                                            <th class="text-secondary opacity-7"></th>
+                                    
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -141,25 +140,13 @@ if (!isset($_SESSION['loggedAdmin_in']) || $_SESSION['loggedAdmin_in'] !== true)
                                                 </td>
 
                                                 <td>
-                                                    <form method="post" action="edit.php">
-                                                        <input type="hidden" value="<?php echo $specialization['specializationID'] ?>" name="id" />
-                                                        <button type='submit' class="badge badge-sm bg-gradient-primary" style="margin-right: -30px;" name='edit'>Edit</button>
+                                                    <form method="post" action="storeChooseSpecialization.php">
+                                                        <input type="hidden" value="<?php echo $specialization['specializationID'] ?>" name="specializationID" />
+                                                        <input type="hidden" value="<?php echo  $_POST['teacherID']  ?>" name="teacherID" />
+                                                        <button type='submit' class="badge badge-sm bg-gradient-success" style="margin-right: -30px;" name='chooseSpecialization'>Choose</button>
                                                     </form>
                                                 </td>
-
-                                                <td>
-                                                    <form method="post" action='delete.php'>
-                                                        <input type="hidden" value="<?php echo $specialization['specializationID'] ?>" name="id" />
-                                                        <button type='submit' class="badge badge-sm bg-gradient-danger" style="margin-right: -30px;" name='delete'>Delete</button>
-                                                    </form>
-                                                </td>
-
-                                                <td>
-                                                    <form method="post" action="subjectTable.php">
-                                                        <input type="hidden" value="<?php echo $specialization['specializationID'] ?>" name="id" />
-                                                        <button type='submit' class="badge badge-sm bg-gradient-dark" name='specializations'>Subjects</button>
-                                                    </form>
-                                                </td>
+          
                                             </tr>
                                         <?php } ?>
                                     </tbody>
