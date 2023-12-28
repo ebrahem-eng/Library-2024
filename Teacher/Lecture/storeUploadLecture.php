@@ -38,8 +38,8 @@ if (isset($_POST['UploadLecture'])) {
     }
 
     // Google Drive API credentials
-    $googleDriveCredentialsPath = '/Applications/MAMP/htdocs/maria/Library-2024-2/library-409411-a5ab9551b06e.json';
-    $googleDriveFolderId = '17lZvfLFLqu0Qh6Hy_QwiVB6nW2OskCTA';
+    $googleDriveCredentialsPath = '/Applications/MAMP/htdocs/maria/Library-2024-2/library-409518-fada4b669aed.json';
+    $googleDriveFolderId = '1D0tWamgivx6cItTi8vAA1PBB4R60TLBN';
 
     // Create Google Client
     $client = new Google_Client();
@@ -86,7 +86,7 @@ if (isset($_POST['UploadLecture'])) {
     $stmt->bindValue(':teacherID', $teacherID);
 
     if ($stmt->execute()) {
-        header("location:index.php?success=1&type=success&message=Lecture Uploaded Successfully", true);
+        header("location:SpecializationTeacher.php?success=1&type=success&message=Lecture Uploaded Successfully", true);
     } else {
         echo "Error: " . $stmt->errorInfo()[2];
     }

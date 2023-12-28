@@ -10,7 +10,7 @@ if (isset($_POST['creat1Send'])) {
 
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
+
     $collegeID = $_POST['collegeID'];
 ?>
     <!DOCTYPE html>
@@ -64,6 +64,7 @@ if (isset($_POST['creat1Send'])) {
 
                                             <div class="col-md-3 mb-3">
                                                 <label for="collegeID">Specialization:</label>
+                                            
                                                 <select class="form-control" id="exampleSelectGender" name="specializationID">
                                                     <?php
 
@@ -121,7 +122,7 @@ if (isset($_POST['creat1Send'])) {
 
                                         <input type="hidden" name="name" value="<?php echo $name ?>">
                                         <input type="hidden" name="email" value="<?php echo $email ?>">
-                                        <input type="hidden" name="password" value="<?php echo $password ?>">
+                                        <input type="hidden" name="password" value="<?php echo $_POST['password'] ?>">
                                         <input type="hidden" name="collegeID" value="<?php echo $collegeID ?>">
                                         <input type="hidden" name="adminID" value="<?php echo $_SESSION['admin_id'] ?>">
                                         <button type="submit" name="send" class="btn btn-primary">

@@ -46,6 +46,32 @@ if (!isset($_SESSION['loggedTeacher_in']) || $_SESSION['loggedTeacher_in'] !== t
                 <div class="col-12 mt-4">
                     <div class="card mb-4">
                         <div class="card-header pb-0 p-3">
+
+                            <?php
+
+                            if (isset($_GET['success']) && $_GET['success'] == 1) {
+                                $message = ($_GET['type'] == 'success') ? $_GET['message'] : '';
+                                echo '<div class="alert alert-success d-flex justify-content-between align-items-center" role="alert">
+<span>' . $message . '</span>
+<button type="button" class="btn-close" onclick="redirectToIndex()" aria-label="Close"></button>
+</div>';
+                            }
+
+                            if (isset($_GET['success']) && $_GET['success'] == 0) {
+                                $message = ($_GET['type'] == 'error') ? $_GET['message'] : '';
+                                echo '<div class="alert alert-danger d-flex justify-content-between align-items-center" role="alert">
+<span>' . $message . '</span>
+<button type="button" class="btn-close" onclick="redirectToIndex()" aria-label="Close"></button>
+</div>';
+                            }
+                            ?>
+
+<script>
+                                function redirectToIndex() {
+                                    // Redirect to index.php when the close button is clicked
+                                    window.location.href = 'SpecializationTeacher.php';
+                                }
+                            </script>
                             <h6 class="mb-1">Specialization</h6>
                             <p class="text-sm">Specialization Teacher </p>
                         </div>
@@ -104,11 +130,11 @@ if (!isset($_SESSION['loggedTeacher_in']) || $_SESSION['loggedTeacher_in'] !== t
                                                     <?php echo $specialization['collegeName'] ?>
                                                 </p>
                                                 <form action="Year.php" method="post">
-                                                <div class="d-flex align-items-center justify-content-between">
-                            
-                                                    <input type="hidden" name="specializationID" value="<?php echo $specialization['specializationID'] ?>">
-                                                    <button type="submit" class="btn btn-outline-primary btn-sm mb-0">View Subject</button>
-                                                </div>
+                                                    <div class="d-flex align-items-center justify-content-between">
+
+                                                        <input type="hidden" name="specializationID" value="<?php echo $specialization['specializationID'] ?>">
+                                                        <button type="submit" class="btn btn-outline-primary btn-sm mb-0">View Subject</button>
+                                                    </div>
                                                 </form>
                                             </div>
                                         </div>

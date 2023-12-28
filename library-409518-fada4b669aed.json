@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "library-409518",
+  "private_key_id": "fada4b669aeded5fa0a56da481a02f98d16c4905",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCUSkb3imcCXXnL\nfyn0eP/m5BVRlwEyXtApw6cgOKb/P0Ax2ev/RA/SPwvhbCnbX4e8nT0CncRquMR5\n2Zu5UzUHxcq8wEbU8V31bRFHeHIfU8NDLFUQjd/Jwf3Kqc9rbO6lXFV7eu56XCKN\ngvSDVv1k2w8psO00plzTQnym3eHVM6L/FDbBavE7M+12QYVsAP5qEdhIPpD47Zgr\nDrYu9/wMdgsGWmAfpz1VsJzGKFB7xARw8zXMNizq3vDB/PnpVQgwhNU2D7mIgrm3\nphW0J6DRGWjYbvXi8SfFPB1AKAxc4Yh2L7X4RE2Xku70YGQOM6n6LbXkBBbsnXVc\njYK8CS7JAgMBAAECggEADKjmtB1pu+b1De12THvEBRc1xrhojr9PcDFW5EZR43qn\n5VmgbzOFUkK1pfIRBLx8HxshaUbEzQOnKmvsgn7bCSXWsBSON4G/rsM39W0P+SKy\nidqQDJDAKT5Zh2LF5XrwSMfAOIF/OI0DGiey7j+P9HtLKRkEtzj4tcR4VdqdfBEC\nJp4Uwr8lTFY5HyKC+zN1zuYdGu4bYDDQWe8aL06J1TsJ0phQU73ByE8Nt+W8Meq4\nzw6YBvrFubdKJEZNyk4TMWiXS68OSPUF5fb0SErmuY+g1nAoxYiyMgT02HnEK/im\nLWZlUdo6MjcX36FAdQ4lanyaje3LkLjbGAELVYCQsQKBgQDOzp1ENn68fH8ULXX7\n4y+6wC45w6ILGh8M25mFrOe8tibKxeH37Ac/ESi6vbcmOnq8RBHCIkG40PjWzDqP\nTydxm9YaEfWOJ4Z/diM5sUhjVEIS50VTD/zICZcOyXRE4jmKre8qGHXoCWksRBbY\nAzlRrpARKLMfrO/+9vgvDnS+fQKBgQC3kE+gX9Nb46cZ64Rh+CpNquY6IRWTuHSQ\nlXE/xYTqp6sIifJk0DH5UrjuY5x9rryBhEEq7seggc7dQ0tEXm2TrRR1Tl0oCcMK\nThm/obm4XWQm22IiT9g/Ns+GAIjUzk4HqcDD3f8rYVsI48GPDHXRA6ReG26L+Ztx\ngeZAkrnnPQKBgB/mVPHZqhDu7zcwj/trnsgirr6wQ4WM4O89zF+HPTOpsTAj9+gj\nGzcKMYskimS2LoptwYN9fz+/1DJlzD6gygfHLu5UiNkFlcSBd4uFohHYRFzgGZxn\nYemFOSzJvEqHzrJqg/KtVTqWgQeX9SIa1TOZRpWu/npLVbWxaLTxeOaNAoGAU/aN\nhYTvb7OU5pVE628RIo+OWX5ymSwhHVVOBOZ7Ir5ozDIVDqnwgeOltV0Y4qA/l1qA\nWHv6Ed/uWGUEk5RBuO/NUM70a3Dzps4MlwwJoFwPiHqGy70L4/ZVPC0YaYaoSHcM\nNktgAV65vjo3ehAv/9gTofwYN6yHvoa1ZEn5AN0CgYALVd8wUPpLG4aRyWrpiK4a\nQIRZUF7iSZqvIsc+WtcRhMemDNSV19GBfaB1noMe9jXZHASm2RWJOI77kEYURa+N\njyOaurQVYDB0wvEwLpwxG/IjF6U1QbEp40lnkYwAdpnWdtKYyWqriHsjhrGCSf3j\naLA7EPULYusxCFohsn2HJw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "uploadlecture@library-409518.iam.gserviceaccount.com",
+  "client_id": "100289243260442373015",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/uploadlecture%40library-409518.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
