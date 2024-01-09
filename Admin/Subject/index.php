@@ -147,12 +147,12 @@ if (!isset($_SESSION['loggedAdmin_in']) || $_SESSION['loggedAdmin_in'] !== true)
                                                     </form>
                                                 </td>
 
-                                                <td>
+                                                <!-- <td>
                                                     <form method="post" action="specializationsTable.php">
                                                         <input type="hidden" value="<?php echo $subject['subjectID'] ?>" name="id" />
                                                         <button type='submit' class="badge badge-sm bg-gradient-dark" name='specializations'>Specializations</button>
                                                     </form>
-                                                </td>
+                                                </td> -->
                                             </tr>
                                         <?php } ?>
                                     </tbody>
